@@ -12,7 +12,7 @@ export default function App() {
             <Counter></Counter>
           </div>
           <div className="col-sm-7 col-12 mb-4">
-            <Task></Task>
+            <Task title="Task List"></Task>
           </div>
         </div>
       </div>

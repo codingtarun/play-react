@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Card } from "../card/Card";
 
-export function Task() {
+export function Task({ title }) {
   let taskList = [
     {
       id: 1,
@@ -18,7 +19,6 @@ export function Task() {
       isComplete: true,
     },
   ];
-
   const [tasks, setTasks] = useState(taskList);
 
   function handleDelete(id) {
@@ -26,33 +26,32 @@ export function Task() {
   }
   return (
     <div>
-      <div className="card">
-        <div className="card-header d-flex justify-content-between">
-          <span>Task List</span>
-          <button className="btn btn-sm btn-outlne-secondary">View All</button>
-        </div>
-        <div className="card-body">
-          <h5 className="card-title">Task List</h5>
-          <ul className="list-group">
-            {tasks.map((task) => (
-              <li
-                className="list-group-item d-flex justify-content-between"
-                key={task.id}
-                onClick={() => handleDelete(task.id)}
+      <Card title="Task List">
+        <ul className="list-group">
+          {tasks.map((task) => (
+            <li
+              className="list-group-item d-flex justify-content-between shadow-sm mb-1"
+              key={task.id}
+            >
+              <span
+                className={
+                  task.isComplete ? "text-decoration-line-through" : ""
+                }
               >
-                <span className="text-decoration-line-through">
-                  {task.task}
-                </span>
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+                {task.task}
+              </span>
+              <div className="btn-group">
+                <button
+                  className="btn btn-sm btn-outline-danger"
+                  onClick={() => handleDelete(task.id)}
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Card>
     </div>
   );
 }
